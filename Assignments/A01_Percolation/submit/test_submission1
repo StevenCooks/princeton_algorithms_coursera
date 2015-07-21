@@ -1,0 +1,40 @@
+#!bin/bash
+##########################################################
+#  File: test_submission1
+#  
+#  Assuming 
+##########################################################
+
+SUBMIT_FILE="percolation.zip"
+
+# 0. clean up and unzip
+rm -f Percolation.*
+rm -f PercolationStats.*
+
+if !(test -s "$SUBMIT_FILE")
+then
+    echo "submission file not found">&2
+    exit 1
+fi
+echo "The following files were submitted:"
+echo "----------------------------------"
+unzip -q "$SUBMIT_FILE"
+ls -l ./
+
+# 1. compile submitted files
+echo 
+echo 
+echo "******************************************************************************"
+echo "*  compiling                                                                  "
+echo "******************************************************************************"
+javac-algs4 Percolation.java
+javac-algs4 PercolationStats.java
+
+
+# 2. check style using checkstyle
+echo
+echo "**** check style ******************************************************************"
+checkstyle-algs4 *.java
+
+echo "**** check style ******************************************************************"
+findbugs-algs4 *.class

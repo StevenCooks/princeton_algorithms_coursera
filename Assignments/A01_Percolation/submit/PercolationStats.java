@@ -1,18 +1,7 @@
 /**
- * File: PercolationStats.java
- *************************************************************************
- * compile:
- *   $ javac-algs4 PercolationStats.java
  * 
- * use: (e.g. T=200, N=100)
- *   $ java-algs4 PercolationStats 200 100
- *   
- * dependency:
- *     Percolation.java  // provides API service  
- * 
- * @date 2015.07.20
  * @author Steven Cooks
- *************************************************************************
+ *
  */
 public class PercolationStats {
 
@@ -100,10 +89,6 @@ public class PercolationStats {
         return mean + 1.96 * stddev / Math.sqrt(T);
     }
 
-    /**
-     * 
-     * @param args two arguments, T and N
-     */
     public static void main(String[] args) {
         int N = 1;
         int T = 1;

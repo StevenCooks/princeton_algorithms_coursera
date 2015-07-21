@@ -1,14 +1,8 @@
 /****************************************************
- * File: Percolation.java
- *************************************************************************
- * compile:
- *   $ javac-algs4 Percolation.java
- *   
  * @date 2015.07.21
  * @author Steven Cooks
  * {@link http://coursera.cs.princeton.edu/algs4/assignments/percolation.html }
- ***************************************************
- */
+ ****************************************************/
 
 public class Percolation {
 
