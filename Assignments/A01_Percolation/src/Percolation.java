@@ -1,4 +1,4 @@
-/****************************************************
+/**
  * File: Percolation.java
  *************************************************************************
  * compile:
@@ -7,7 +7,7 @@
  * @date 2015.07.21
  * @author Steven Cooks
  * {@link http://coursera.cs.princeton.edu/algs4/assignments/percolation.html }
- ***************************************************
+ *************************************************************************
  */
 
 public class Percolation {
@@ -190,6 +190,6 @@ public class Percolation {
         System.out.println(counts);
         double p = 1.0 * counts / (N * N);
         StdOut.print(p);
-
     }
+
 }

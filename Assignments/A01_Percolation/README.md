@@ -5,6 +5,7 @@
 1. main goal: practice union-find data structure
 2. score: 101.25/100 (bonus for memory performance)
 3. Key idea: set virtual-top / virtual-bottom nodes to tell percolates in O(1) time.
+
     ```java
     #              virtual-top
     #             /    |    \
@@ -22,4 +23,5 @@
 - [Detailed instructions](http://coursera.cs.princeton.edu/algs4/assignments/percolation.html)
 
 - [Q & A](http://coursera.cs.princeton.edu/algs4/checklists/percolation.html)
+
 
