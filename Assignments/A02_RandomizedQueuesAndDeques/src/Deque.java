@@ -1,25 +1,51 @@
 /**
  * File: Dequeue.java
  ************************************************************************
+ *  Compilation : javac Dequeue.java
+ *    Execution : java Dequeue
+ * Dependencies : StdIn.java StdOut.java
  *
  * @date July 23, 2015
- * @author Steven Cooks
- ************************************************************************
- */
-import java.util.ArrayList;
+ ************************************************************************/
 import java.util.Iterator;
-import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * The <tt>Deque</tt> class represents a double-end queue.
+ * 
+ * @author Steven Cooks
+ */
 public class Deque<Item> implements Iterable<Item> {
+
+    // dummy head node at the front of deque
+    private Node head;
+
+    // dummy tail node at the back of deque
+    private Node tail;
+
+    // number of items in deque excluding head and tail
+    private int N;
+    
+    // helper linked list class
+    private class Node {
+        private Item item;
+        private Node pre;
+        private Node next;
+        public Node(Item item) {
+            this.item = item;
+        }
+    }
 
     /**
      * Constructs an empty deque.
      */
     public Deque() {
-        // TODO Auto-generated constructor stub
-        List<Integer> list = new ArrayList<Integer>();
-        list.add(2);
+        Item item = null;
+        head = new Node(item);
+        tail = new Node(item);
+        head.next = tail;
+        tail.pre = head;
+        N = 0;
     }
 
     /**
@@ -28,7 +54,7 @@ public class Deque<Item> implements Iterable<Item> {
      * @return <tt>true</tt> if this deque contains no element
      */
     public boolean isEmpty() {
-        return false;
+        return N == 0;
     }
 
     /**
@@ -37,16 +63,26 @@ public class Deque<Item> implements Iterable<Item> {
      * @return the number of elements in this deque
      */
     public int size() {
-        return 0;
+        return N;
     }
 
     /**
      * Adds the item to the front of this deque.
      * 
      * @param item element to be added to the front of this deque
+     * @throws NullPointerException if the specific item is null
      */
     public void addFirst(Item item) {
-
+        if (item == null) {
+            throw new NullPointerException();
+        }
+        Node node = new Node(item);
+        // insert node before head and head.next
+        node.next = head.next;
+        node.pre = head;
+        head.next.pre = node;
+        head.next = node;
+        N++;
     }
 
     /**
@@ -59,6 +95,13 @@ public class Deque<Item> implements Iterable<Item> {
         if (item == null) {
             throw new NullPointerException();
         }
+        Node node = new Node(item);
+        // insert node before tail.pre and tail;
+        node.pre = tail.pre;
+        node.next = tail;
+        tail.pre.next = node;
+        tail.pre = node;
+        N++;
     }
 
     /**
@@ -71,7 +114,13 @@ public class Deque<Item> implements Iterable<Item> {
         if (isEmpty()) {
             throw new NoSuchElementException();
         }
-        return null;
+        Node node = head.next;
+        Item item = node.item;
+        node.next.pre = head;
+        head.next = node.next;
+        node = null;  // allow GC to work loitering
+        N--;
+        return item;
     }
 
     /**
@@ -84,7 +133,13 @@ public class Deque<Item> implements Iterable<Item> {
         if (isEmpty()) {
             throw new NoSuchElementException();
         }
-        return null;
+        Node node = tail.pre;
+        Item item = node.item;
+        node.pre.next = tail;
+        tail.pre = node.pre;
+        node = null;
+        N--;
+        return item;
     }
 
     /**
@@ -96,12 +151,57 @@ public class Deque<Item> implements Iterable<Item> {
      * @throws NoSuchElementException if next() is called and there are no more
      *             items to return
      */
+    @Override
     public Iterator<Item> iterator() {
-        return null;
+        return new ListIterator();
+    }
+
+    private class ListIterator implements Iterator<Item> {
+        private Node cur = head.next;
+
+        @Override
+        public boolean hasNext() {
+            return cur != tail;
+        }
+
+        /**
+         * Does support remove operation in iterator.
+         * @throws UnsupportedOperationException if <em>remove</em> is called in
+         *             iterator
+         */
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Item next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            Item item = cur.item;
+            cur = cur.next;
+            return item;
+        }
+
     }
 
     public static void main(String[] args) {
-
+        Deque<Integer> deque = new Deque<Integer>();
+        StdOut.println(deque.size());
+        deque.addFirst(2);
+        deque.addFirst(1);
+        deque.addLast(3);
+        deque.addLast(4);
+        StdOut.println(deque.removeFirst());
+        StdOut.println(deque.removeLast());
+        StdOut.println(deque.size());
+        StringBuilder sb = new StringBuilder("[");
+        for (Integer integer : deque) {
+            sb.append(integer + " ");
+        }
+        sb.append("]");
+        StdOut.println(sb.toString());
     }
 
 }
