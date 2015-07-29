@@ -1,5 +1,8 @@
-## Assignment2 [Randomized Queues and Deques](https://class.coursera.org/algs4partI-008/assignment/view?assignment_id=3)
-
+Assignment2 
+======================================================
+Randomized Queues and Deques 
+ [Javadoc see here](http://interviewcoder.github.io/princeton_algorithms_coursera/Assignments/A02_RandomizedQueuesAndDeques/doc/)
+------------------------------------------------------
 Write a generic data type for a deque and a randomized queue using linked list and resizing array.
 
 1. Implement deque using doubly-linked list to support operations in constant worst-case time.
