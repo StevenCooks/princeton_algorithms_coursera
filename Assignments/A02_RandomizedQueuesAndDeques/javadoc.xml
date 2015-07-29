@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="public" author="true" classpath="/Users/Steven/algs4/algs4.jar:/Users/Steven/algs4/stdlib.jar:/Users/Steven/Downloads/eclipse/plugins/org.junit_4.11.0.v201303080030/junit.jar:/Users/Steven/Downloads/eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar" destdir="doc" doctitle="RandomizedQueuesAndDequeues" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" source="1.7" sourcefiles="src/RandomizedQueue.java,src/Deque.java,test/RandomizedQueueTest.java,test/DequeTest.java,src/Subset.java,test/SubsetTest.java" sourcepath="test:src" splitindex="true" use="true" version="true"/>
+    </target>
+</project>
