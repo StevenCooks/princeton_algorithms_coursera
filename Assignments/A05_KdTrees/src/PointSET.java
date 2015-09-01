@@ -77,6 +77,9 @@ public class PointSET {
      * @param p
      */
     public void draw() {
+        for (Point2D point : set) {
+            point.draw();
+        }
     }
 
     /**
